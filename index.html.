@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FRIEDAYS | Talavera Branch</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap');
+
+:root {
+  --yellow:#ffd52a;
+  --black:#171717;
+  --cream:#fffdf5;
+  --orange:#f47735;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--cream);color:var(--black);font-family:'DM Sans',sans-serif}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+.topbar{background:var(--black);color:white;text-align:center;padding:10px;font-size:11px;font-weight:800;letter-spacing:1.5px}
+header{position:sticky;top:0;z-index:10;background:var(--cream);display:flex;justify-content:space-between;align-items:center;padding:15px 7%;border-bottom:1px solid #eee}
+.logo{font:900 25px Outfit;letter-spacing:-1px}
+.logo span{background:var(--yellow);padding:5px 9px;border:2px solid;border-radius:8px;margin-right:7px}
+.logo small{display:block;font:800 9px 'DM Sans';letter-spacing:2px;margin-left:49px}
+nav{display:flex;gap:24px;align-items:center;font-size:12px;font-weight:800}
+nav a:hover{color:#b27c00}
+.navbtn{background:var(--yellow);border:2px solid;padding:12px 18px;border-radius:5px}
+.hero{background:var(--yellow);padding:75px 9%;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:25px;overflow:hidden}
+.eyebrow{font-size:10px;font-weight:900;letter-spacing:2px;margin-bottom:17px}
+.hero h1{font:900 clamp(48px,7vw,82px)/.9 Outfit;letter-spacing:-3px;margin:0}
+.hero h1 span{color:white;-webkit-text-stroke:1.5px var(--black)}
+.hero p{max-width:450px;font-size:14px;line-height:1.8;margin:25px 0}
+.btn{display:inline-block;padding:14px 21px;background:var(--black);color:white;border:2px solid var(--black);font-size:12px;font-weight:900;border-radius:4px;cursor:pointer}
+.btn:hover{transform:translateY(-3px);box-shadow:4px 4px 0 var(--black)}
+.hero-art{min-height:320px;display:grid;place-items:center;position:relative}
+.food-circle{width:280px;height:280px;border-radius:50%;border:3px solid;background:#fff8dc;display:grid;place-items:center;transform:rotate(7deg);box-shadow:12px 12px #17171722}
+.food-circle span{font-size:140px}
+.sticker{position:absolute;background:var(--black);color:var(--yellow);padding:13px;font:900 13px Outfit;transform:rotate(-10deg)}
+.sticker.one{top:30px;right:0}
+.sticker.two{bottom:25px;left:0;background:white;color:black;border:2px solid}
+.ticker{background:var(--black);color:white;text-align:center;padding:15px;font:800 11px Outfit;letter-spacing:2px}
+.ticker span{color:var(--yellow);padding:0 15px}
+section.content{padding:80px 8%}
+.heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:30px}
+.heading h2,.promo-title,.feedback h2{font:900 clamp(37px,5vw,57px)/.95 Outfit;letter-spacing:-2px;margin:0}
+.heading h2 span,.promo-title span{color:var(--yellow);-webkit-text-stroke:1px var(--black)}
+.heading p{max-width:330px;font-size:12px;line-height:1.8;color:#777}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tabs button{border:1px solid #ddd;background:white;border-radius:25px;padding:10px 15px;font-size:11px;font-weight:800;cursor:pointer}
+.tabs button.active{background:var(--black);color:white}
+.search{width:100%;max-width:350px;border:1px solid #ddd;border-radius:25px;padding:12px 16px;margin-bottom:22px}
+.menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.item{background:white;border:1px solid #e8e2d6;border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+.item-art{height:120px;display:grid;place-items:center;font-size:65px;background:#fff0b6;position:relative}
+.item:nth-child(3n) .item-art{background:#ffe0cc}
+.item:nth-child(3n+1) .item-art{background:#e9edcf}
+.item-art small{position:absolute;top:10px;left:10px;background:white;padding:5px 8px;border-radius:20px;font-size:8px;font-weight:900}
+.item-info{padding:14px;display:flex;flex-direction:column;flex:1}
+.item h3{font:800 14px Outfit;margin:0 0 6px}
+.item p{font-size:10px;color:#777;line-height:1.5;margin:0 0 12px}
+.flavors{font-size:9px;color:#777;margin-bottom:10px}
+.item-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.price{font:900 17px Outfit}
+.add{background:var(--yellow);border:1px solid;padding:8px 11px;font-size:10px;font-weight:900;cursor:pointer;border-radius:4px}
+.add:hover{background:var(--black);color:white}
+.order{background:var(--black);color:white;padding:75px 8%;display:grid;grid-template-columns:.8fr 1.2fr;gap:45px}
+.order h2{font:900 clamp(38px,5vw,60px)/.95 Outfit;margin:10px 0}
+.order h2 span{color:var(--yellow)}
+.order-intro p{font-size:12px;line-height:1.8;color:#ccc;max-width:380px}
+.order-intro .eyebrow{color:var(--yellow)}
+.cart{background:white;color:var(--black);border-radius:9px;padding:23px}
+.cart h3{font:900 22px Outfit;margin:0}
+.cart-header{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding-bottom:13px}
+.cart-row{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #eee}
+.cart-row strong{font-size:11px}
+.cart-row small{display:block;color:#777;font-size:9px}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:24px;height:24px;border:1px solid #ddd;background:#fff4bd;cursor:pointer}
+.cart-line{font-size:11px;font-weight:800}
+.empty{text-align:center;padding:25px;color:#888;font-size:12px}
+.total{display:flex;justify-content:space-between;padding:15px 0;border-top:1px solid #eee;font-size:12px}
+.total strong{font:900 21px Outfit}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cart label{display:block;font-size:10px;font-weight:800}
+.cart input,.cart select,.cart textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:4px;margin-top:6px;font-size:11px}
+.cart textarea{resize:vertical}
+.full{margin-top:12px}
+.checkout{background:var(--yellow);color:black;width:100%;margin-top:17px}
+.note{font-size:9px;color:#777;line-height:1.6}
+#status{font-size:11px;color:#9a4d16;font-weight:800}
+.how{background:#fffdf5}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.step{background:white;border:1px solid #eee;padding:22px;border-radius:8px}
+.step b{font:900 14px Outfit}
+.step .emoji{font-size:29px;margin-bottom:15px}
+.step p{font-size:10px;color:#777;line-height:1.7}
+.location{margin-top:20px;background:#ffe98b;padding:18px;border-radius:6px;font-size:11px;line-height:1.8}
+.promotions{background:#f6f0e3}
+.promo-title{margin-bottom:30px}
+.promo-feature{background:var(--yellow);border:2px solid;border-radius:8px;padding:30px;display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:25px}
+.promo-feature h3{font:900 35px Outfit;margin:12px 0}
+.promo-feature p{font-size:12px;line-height:1.7;max-width:520px}
+.stamps{display:flex;gap:8px;margin:15px 0}
+.stamps span{width:32px;height:32px;border:1px dashed;border-radius:50%;display:grid;place-items:center}
+.stamp-art{font:900 58px Outfit;text-align:center;border:5px double;border-radius:50%;padding:20px;background:#fff8dc}
+.promo-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.promo-tabs button{border:1px solid #ddd;background:white;border-radius:20px;padding:10px 13px;font-size:10px;font-weight:800;cursor:pointer}
+.promo-tabs button.active{background:var(--black);color:white}
+.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.promo-card{background:white;border:1px solid #e8dfce;border-radius:8px;padding:20px;min-height:170px}
+.promo-card .icon{font-size:25px}
+.promo-card h3{font:800 15px Outfit;margin:12px 0 7px}
+.promo-card p{font-size:10px;color:#777;line-height:1.7}
+.promo-card small{font-size:8px;color:#a16e17;font-weight:800}
+.feedback{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.feedback p{font-size:12px;line-height:1.8;color:#777}
+.feedback-card{background:var(--yellow);border:2px solid;padding:25px;border-radius:8px;display:flex;gap:20px;align-items:center}
+.qr{width:100px;height:100px;background:repeating-conic-gradient(#171717 0% 25%,white 0% 50%) 50%/14px 14px;border:8px solid white;display:grid;place-items:center}
+.qr b{background:white;padding:8px}
+.about{background:var(--yellow);padding:70px 8%;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.about h2{font:900 43px/.95 Outfit}
+.about p{font-size:12px;line-height:1.8}
+footer{background:var(--black);color:white;padding:35px 8%;text-align:center;font-size:10px}
+footer b{color:var(--yellow);font:900 20px Outfit}
+.float-cart{display:none;position:fixed;bottom:15px;right:15px;background:var(--yellow);border:2px solid;padding:12px 17px;border-radius:30px;z-index:9;font-size:11px;font-weight:900;box-shadow:3px 3px black}
+@media(max-width:900px){.menu-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){
+ header{padding:12px 5%;flex-wrap:wrap}nav{gap:12px;flex-wrap:wrap;font-size:10px}
+ .hero{grid-template-columns:1fr;padding:50px 7% 20px}.hero h1{font-size:55px}
+ .hero-art{min-height:280px}.food-circle{width:225px;height:225px}.food-circle span{font-size:110px}
+ section.content{padding:60px 6%}.heading{display:block}.heading p{margin-top:15px}
+ .menu-grid{grid-template-columns:repeat(2,1fr);gap:9px}.item-art{height:100px;font-size:48px}.item-info{padding:10px}
+ .order{grid-template-columns:1fr;padding:55px 6%;gap:25px}
+ .steps{grid-template-columns:repeat(2,1fr)}
+ .promo-feature{flex-direction:column;align-items:flex-start}
+ .promo-grid{grid-template-columns:1fr 1fr}
+ .feedback,.about{grid-template-columns:1fr}
+}
+@media(max-width:390px){nav{gap:9px}.menu-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.promo-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">GOOD VIBES. GREAT BITES. SULIT DELIGHTS. ✳ MONDAY–FRIDAY | 9:30 AM–7:30 PM</div>
+
+<header>
+  <a class="logo" href="#home"><span>F!</span> FRIEDAYS<small>TALAVERA BRANCH</small></a>
+  <nav>
+    <a href="#menu">MENU</a>
+    <a href="#order">ORDER</a>
+    <a href="#how">PICKUP</a>
+    <a href="#promotions">PROMOS</a>
+    <a href="#about">ABOUT</a>
+    <a class="navbtn" href="#order">ORDER NOW ↗</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div>
+    <div class="eyebrow">YOUR CRAVINGS, OUR PRIORITY!</div>
+    <h1>GOOD FOOD.<br><span>GOOD MOOD.</span><br>GOOD DEALS.</h1>
+    <p>From student-friendly meals to crispy chicken and Filipino street-food favorites, there's a sulit bite for every craving!</p>
+    <a class="btn" href="#menu">EXPLORE OUR MENU ↓</a>
+  </div>
+  <div class="hero-art">
+    <div class="food-circle"><span>🍗</span></div>
+    <div class="sticker one">SULIT!</div>
+    <div class="sticker two">MADE FOR YOUR CRAVINGS ✳</div>
+  </div>
+</section>
+
+<div class="ticker">ESTUDYAN-TIPID MEALS <span>✳</span> CHICKEN FAVORITES <span>✳</span> CHEESY FRIES <span>✳</span> FRITO FAVORITES <span>✳</span> RED ICED TEA</div>
+
+<section class="content" id="menu">
+  <div class="heading">
+    <div><div class="eyebrow">THE GOOD STUFF</div><h2>WHAT ARE YOU<br><span>CRAVING TODAY?</span></h2></div>
+    <p>Choose your favorites, check the prices, and add them to your order. All prices are in Philippine pesos.</p>
+  </div>
+  <div class="tabs" id="tabs">
+    <button class="active" data-cat="all">ALL ITEMS</button>
+    <button data-cat="chicken">CHICKEN</button>
+    <button data-cat="meals">MEALS & COMBOS</button>
+    <button data-cat="snacks">SNACKS</button>
+    <button data-cat="frito">FRITO FAVORITES</button>
+    <button data-cat="drinks">DRINKS</button>
+  </div>
+  <input class="search" id="search" placeholder="⌕  Search your cravings..." aria-label="Search menu">
+  <div class="menu-grid" id="menuGrid"></div>
+  <p class="note">Menu prices and availability are subject to confirmation by Friedays.</p>
+</section>
+
+<section class="order" id="order">
+  <div class="order-intro">
+    <div class="eyebrow">FRIEDAYS CLICK & CRAVE</div>
+    <h2>YOUR ORDER.<br><span>YOUR PICKUP TIME.</span></h2>
+    <p>Skip the guesswork! Add your favorites to your cart, send your advance-order request through Facebook, and wait for confirmation before heading to the store.</p>
+    <p>01 CHOOSE &nbsp; 02 SEND &nbsp; 03 CONFIRM &nbsp; 04 PICK UP</p>
+  </div>
+  <div class="cart">
+    <div class="cart-header"><h3>YOUR ORDER 🛒</h3><span id="count">0 items</span></div>
+    <div id="cartItems"><div class="empty">Your cart is waiting for something delicious! 🍟</div></div>
+    <div class="total"><span>ESTIMATED TOTAL</span><strong id="total">₱0.00</strong></div>
+    <form id="orderForm">
+      <div class="form-grid">
+        <label>Your name<input id="customer" required placeholder="Name for the order"></label>
+        <label>Contact number<input id="phone" required placeholder="09XX XXX XXXX"></label>
+        <label>Preferred pickup date<input id="date" type="date" required></label>
+        <label>Preferred pickup time<select id="time" required><option value="">Choose a time</option></select></label>
+      </div>
+      <label class="full">Order notes (optional)<textarea id="notes" rows="2" placeholder="Flavor choices or other instructions"></textarea></label>
+      <button class="btn checkout" type="submit">SEND ORDER REQUEST VIA FACEBOOK ↗</button>
+      <p class="note">Your order is a request only. Friedays must confirm item availability, total amount, and pickup schedule. No online payment is collected on this website.</p>
+      <p id="status"></p>
+    </form>
+  </div>
+</section>
+
+<section class="content how" id="how">
+  <div class="heading"><div><div class="eyebrow">EASY AS 1, 2, 3, 4</div><h2>ORDER & GO.</h2></div><p>A convenient ordering and pickup process for busy students, workers, and food lovers.</p></div>
+  <div class="steps">
+    <div class="step"><div class="emoji">📱</div><b>01. Browse</b><p>Explore the digital menu and check product prices.</p></div>
+    <div class="step"><div class="emoji">🛒</div><b>02. Add to cart</b><p>Select your items, quantities, and preferred pickup schedule.</p></div>
+    <div class="step"><div class="emoji">💬</div><b>03. Confirm</b><p>Send your request through Messenger and wait for confirmation.</p></div>
+    <div class="step"><div class="emoji">🛍️</div><b>04. Pick up</b><p>Visit the branch at your confirmed pickup time.</p></div>
+  </div>
+  <div class="location">📍 <b>PICKUP LOCATION</b><br>Near Talavera National High School, Diaz St., Brgy. Pag-asa, Talavera, Nueva Ecija.<br>🕘 Monday–Friday, 9:30 AM–7:30 PM.<br><small>Pickup time must be confirmed by the Friedays team.</small></div>
+</section>
+
+<section class="content promotions" id="promotions">
+  <div class="eyebrow">MORE THAN JUST GOOD FOOD</div>
+  <h2 class="promo-title">THE FRIEDAYS<br><span>SULIT PLAYBOOK.</span></h2>
+  <p class="note">Explore the proposed marketing campaigns. Campaign mechanics, discounts, prizes, and schedules require owner approval before implementation.</p>
+
+  <div class="promo-feature">
+    <div>
+      <div class="eyebrow">LOYALTY PROGRAM CONCEPT</div>
+      <h3>SULIT STAMP CARD</h3>
+      <p>Collect one stamp for every qualifying purchase of at least ₱49. Complete five stamps and redeem free Cheesy Fries or another approved snack of equal or lower value.</p>
+      <div class="stamps"><span>✳</span><span>✳</span><span>✳</span><span>✳</span><span>?</span></div>
+      <small>Proposed mechanics. Ask if the program is active.</small>
+    </div>
+    <div class="stamp-art">5<br><small>STAMPS</small></div>
+  </div>
+
+  <div class="promo-tabs" id="promoTabs">
+    <button class="active" data-filter="all">ALL CAMPAIGNS</button>
+    <button data-filter="digital">DIGITAL & ORDERING</button>
+    <button data-filter="loyalty">LOYALTY & COMMUNITY</button>
+    <button data-filter="seasonal">SEASONAL & EVENTS</button>
+    <button data-filter="feedback">FEEDBACK & SERVICE</button>
+  </div>
+  <div class="promo-grid" id="promoGrid"></div>
+</section>
+
+<section class="content feedback" id="feedback">
+  <div>
+    <div class="eyebrow">SCAN & SPILL</div>
+    <h2>YOUR CRAVINGS.<br><span>YOUR VOICE.</span></h2>
+    <p>Got a favorite? A suggestion? Tell us what you think about our food, prices, waiting time, and service. Your feedback helps Friedays improve!</p>
+    <a class="btn" href="https://www.facebook.com/share/1CFQBqySuD/" target="_blank" rel="noopener">MESSAGE FRIEDAYS ↗</a>
+  </div>
+  <div class="feedback-card">
+    <div class="qr"><b>QR</b></div>
+    <div><h3>SCAN & SPILL!</h3><p>Scan the official store feedback QR code when available, or message Friedays on Facebook.</p><a href="https://www.facebook.com/share/1CFQBqySuD/" target="_blank" rel="noopener"><b>VISIT FACEBOOK ↗</b></a></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div><div class="eyebrow">A LITTLE ABOUT US</div><h2>YOUR EVERYDAY<br>SULIT FOOD STOP.</h2><p>Friedays – Talavera Branch brings together student-friendly meals, chicken favorites, trendy snacks, and well-loved Filipino street-food choices. Whether it's a quick bite after class or something to share with friends, there's a craving worth answering!</p></div>
+  <div>
+    <p>📍 <b>FIND US</b><br>Near Talavera National High School, Diaz St., Brgy. Pag-asa, Talavera, Nueva Ecija.</p>
+    <p>🕘 <b>STORE HOURS</b><br>Monday–Friday, 9:30 AM–7:30 PM.</p>
+    <p>💬 <b>CONNECT WITH US</b><br><a href="https://www.facebook.com/share/1CFQBqySuD/" target="_blank" rel="noopener">Friedays Facebook Page ↗</a></p>
+  </div>
+</section>
+
+<footer><b>FRIEDAYS – TALAVERA BRANCH</b><p>GOOD VIBES. GREAT BITES. SULIT DELIGHTS.</p><small>© <span id="year"></span> Friedays. Menu, prices, availability, and promotions are subject to change.</small></footer>
+<div class="float-cart" id="floatCart">🛒 <span id="floatCount">0</span> ITEMS · <span id="floatTotal">₱0.00</span> · <a href="#order">VIEW CART ↑</a></div>
+
+<script>
+const FACEBOOK="https://www.facebook.com/share/1CFQBqySuD/";
+const products=[
+["wings","Chicken Wings",59,"chicken","🍗","Buffalo • Honey Butter • Cheesy • Creamy"],
+["boneless","Boneless Chicken",75,"chicken","🍗","Buffalo • Honey Butter • Cheesy • Creamy"],
+["nuggetgravy","8 pcs Nuggets with Gravy",60,"snacks","🍟",""],
+["nuggetfries","8 pcs Nuggets with Fries",98,"meals","🍟",""],
+["cheesyfries","Cheesy Fries",49,"snacks","🍟",""],
+["chickfries","Chick N' Fries",139,"meals","🍗",""],
+["tea","Red Iced Tea",25,"drinks","🧋",""],
+["coke","Coke",18,"drinks","🥤",""],
+["royal","Royal",18,"drinks","🥤",""],
+["sprite","Sprite",18,"drinks","🥤",""],
+["water","Water",15,"drinks","💧",""],
+["poppers","Chicken Poppers",69,"chicken","🍗","Cheesy • Creamy • Gravy"],
+["rice","2 pcs Boneless Chicken with Rice",79,"meals","🍛",""],
+["ricefries","2 pcs Boneless Chicken with Rice and Fries",119,"meals","🍛",""],
+["siomai","3 pcs Siomai",35,"snacks","🥟",""],
+["nuggets3","3 pcs Nuggets",35,"snacks","🍗",""],
+["skinwhole","Chicken Skin – Whole",155,"frito","🍖",""],
+["skinhalf","Chicken Skin – Half",79,"frito","🍖",""],
+["isawwhole","Chicken Isaw – Whole",155,"frito","🍢",""],
+["isawhalf","Chicken Isaw – Half",79,"frito","🍢",""],
+["neckwhole","Chicken Neck – Whole",155,"frito","🍗",""],
+["neckhalf","Chicken Neck – Half",79,"frito","🍗",""],
+["funhalf","Fun Shots – Half",99,"frito","🍗",""],
+["funwhole","Fun Shots – Whole",188,"frito","🍗",""],
+["provenhalf","Proven – Half",89,"frito","🍢",""],
+["provenwhole","Proven – Whole",175,"frito","🍢",""],
+["calhalf","Calamares – Half",89,"frito","🦑",""],
+["calwhole","Calamares – Whole",175,"frito","🦑",""],
+["bonehalf","Boneless Chicken – Half",189,"chicken","🍗",""],
+["bonewhole","Boneless Chicken – Whole",365,"chicken","🍗",""],
+["tenderhalf","Chicken Tenders (Breast) – Half",95,"chicken","🍗",""],
+["tenderwhole","Chicken Tenders (Breast) – Whole",190,"chicken","🍗",""]
+];
+
+const promos=[
+["📸","Crave, Click, and Order!","digital","Promote actual product photos, menu prices, and clear ordering instructions through Facebook."],
+["📲","Friedays Click & Crave","digital","A mobile-friendly digital menu with categories, prices, promotions, and an advance-order form accessible through a QR code."],
+["📱","Friedays Feed: Scroll, Crave, and Order!","digital","A consistent Facebook content plan featuring product spotlights, student-centered graphics, food videos, and polls."],
+["😂","Cravings Check: Relate, Laugh, and Order!","digital","Use relatable student memes, food comparisons, and trends paired with actual menu items."],
+["⭐","Sulit Finds","digital","Feature affordable menu choices, product photos, and prices through regular Facebook posts."],
+["💬","Chat, Confirm, Pick Up!","digital","Encourage customers to message ahead, confirm availability, and arrange pickup."],
+["🤖","Messenger Pre-Order Assistant","digital","Propose automated Messenger replies to guide customers through menu choices, quantities, prices, and pickup details."],
+["👥","Group Pre-Order Express","digital","Organize advance orders for groups, with owner-approved deadlines and pickup arrangements."],
+["🛍️","Friedays To-Go: Chat, Order, and Enjoy!","digital","Promote advance ordering and scheduled pickup. Delivery only if the owner approves it."],
+["➡️","Order & Go System","digital","Use clear Place Your Order Here and Claim Your Order Here signs and an organized pickup flow."],
+["🎟️","Sulit Stamp Card","loyalty","One stamp per qualifying purchase of at least ₱49. Five stamps can be redeemed for approved Cheesy Fries or an eligible snack."],
+["🎡","Buddy Bites: Bring a Friend, Spin for a Treat!","loyalty","A proposed referral activity where qualifying purchases allow friends to spin for owner-approved treats or discounts."],
+["🌶️","Flavor Drop: Ikaw ang Flavor Boss!","loyalty","Invite customers to suggest flavors and feature one feasible customer-inspired flavor of the week."],
+["🗳️","Flavor Frenzy: Pick the Trend, Taste the Yum!","loyalty","Use Facebook polls and in-store voting to identify a popular flavor or menu idea."],
+["💛","Sulit Squad: Busog ang Tiyan, Happy ang Bulsa!","loyalty","Highlight budget-friendly meals, weekly sulit picks, and affordable bundles."],
+["🎵","Friedays Sound Bites: Cravings on the Beat!","loyalty","Use an in-store playlist and short announcements to feature products and approved promotions."],
+["🪧","Cravings Corner: See It, Choose It, Love It!","loyalty","Improve the storefront menu board with food photos, clear categories, and accurate prices."],
+["🎃","Spooktacular Sulit Treats","seasonal","A Halloween-themed campaign using existing food items and fun promotional graphics."],
+["🎄","Paskong Busog, Presyong Panalo!","seasonal","A Christmas campaign featuring affordable meals and shareable snacks."],
+["🎁","Festive Food Bundle","seasonal","Create holiday bundles using existing products after checking costs and profit."],
+["🏫","School Events & Group Orders","seasonal","Explore advance food orders for school events, subject to permission and store capacity."],
+["📚","Nearby Schools Student Reach","seasonal","Share approved promotional materials with nearby student communities."],
+["🎪","Talavera Community Events","seasonal","Explore participation in local fiestas and community events, subject to permits and costs."],
+["♻️","SmartServe: Sulit ang Luto, Iwas Sayang!","feedback","Use sales patterns to plan purchases and reduce avoidable food waste."],
+["📝","Scan & Spill: Your Cravings, Your Voice!","feedback","Use a QR survey to gather customer feedback about food, prices, waiting time, and service."],
+["👂","Hear & Improve","feedback","Record customer concerns and resolutions to improve service."],
+["🏁","Friedays Edge: Sulit, Sarap, at Student-Friendly!","feedback","Compare public competitor menus and highlight Friedays' verified strengths."],
+["🍱","Sulit Meal Spotlight","feedback","Feature Estudyan-Tipid Meals, their inclusions, and their ₱49–₱69 price range."],
+["📊","Flavor & Customer Trend Check","feedback","Review sales and suggestions to identify best-sellers and possible menu improvements."]
+];
+
+let cart={};
+let category="all";
+let promoCategory="all";
+const money=n=>"₱"+n.toFixed(2);
+
+function showMenu(){
+ const query=document.getElementById("search").value.toLowerCase();
+ const filtered=products.filter(p=>(category==="all"||p[3]===category)&&p[1].toLowerCase().includes(query));
+ document.getElementById("menuGrid").innerHTML=filtered.length?filtered.map(p=>`
+ <article class="item">
+ <div class="item-art"><small>${p[3].toUpperCase()}</small>${p[4]}</div>
+ <div class="item-info"><h3>${p[1]}</h3><p>${p[5]?"Available choices and flavors:":"Friedays favorite. Add to your order!"}</p>
+ ${p[5]?`<div class="flavors">${p[5]}</div>`:""}
+ <div class="item-bottom"><span class="price">${money(p[2])}</span><button class="add" onclick="addItem('${p[0]}')">+ ADD</button></div></div>
+ </article>`).join(""):'<div class="empty">No matching items. Try another search.</div>';
+}
+
+function addItem(id){cart[id]=(cart[id]||0)+1;showCart()}
+function changeQty(id,n){cart[id]=(cart[id]||0)+n;if(cart[id]<=0)delete cart[id];showCart()}
+function countItems(){return Object.values(cart).reduce((a,b)=>a+b,0)}
+function totalPrice(){return products.reduce((s,p)=>s+(cart[p[0]]||0)*p[2],0)}
+function showCart(){
+ const selected=products.filter(p=>cart[p[0]]);
+ document.getElementById("count").textContent=countItems()+" items";
+ document.getElementById("total").textContent=money(totalPrice());
+ document.getElementById("floatCount").textContent=countItems();
+ document.getElementById("floatTotal").textContent=money(totalPrice());
+ document.getElementById("floatCart").style.display=countItems()?"block":"none";
+ document.getElementById("cartItems").innerHTML=selected.length?selected.map(p=>`
+ <div class="cart-row"><div><strong>${p[1]}</strong><small>${money(p[2])} each</small></div>
+ <div class="qty"><button type="button" onclick="changeQty('${p[0]}',-1)">−</button>${cart[p[0]]}<button type="button" onclick="changeQty('${p[0]}',1)">+</button></div>
+ <span class="cart-line">${money(p[2]*cart[p[0]])}</span></div>`).join(""):'<div class="empty">Your cart is waiting for something delicious! 🍟</div>';
+}
+
+function showPromos(){
+ const filtered=promos.filter(p=>promoCategory==="all"||p[2]===promoCategory);
+ document.getElementById("promoGrid").innerHTML=filtered.map(p=>`
+ <article class="promo-card"><span class="icon">${p[0]}</span><h3>${p[1]}</h3><p>${p[3]}</p><small>PROPOSED CAMPAIGN · SUBJECT TO OWNER APPROVAL</small></article>`).join("");
+}
+
+document.getElementById("tabs").addEventListener("click",e=>{
+ if(!e.target.dataset.cat)return;
+ category=e.target.dataset.cat;
+ document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("active",b===e.target));
+ showMenu();
+});
+document.getElementById("search").addEventListener("input",showMenu);
+document.getElementById("promoTabs").addEventListener("click",e=>{
+ if(!e.target.dataset.filter)return;
+ promoCategory=e.target.dataset.filter;
+ document.querySelectorAll("#promoTabs button").forEach(b=>b.classList.toggle("active",b===e.target));
+ showPromos();
+});
+
+const date=document.getElementById("date");
+const now=new Date();
+now.setMinutes(now.getMinutes()-now.getTimezoneOffset());
+date.min=now.toISOString().slice(0,10);
+
+const time=document.getElementById("time");
+for(let h=9;h<=19;h++){
+ for(let m of [0,30]){
+  if(h===9&&m===0)continue;
+  if(h===19&&m>30)continue;
+  let value=String(h).padStart(2,"0")+":"+String(m).padStart(2,"0");
+  let d=new Date();d.setHours(h,m);
+  let option=document.createElement("option");
+  option.value=value;
+  option.textContent=d.toLocaleTimeString("en-PH",{hour:"numeric",minute:"2-digit"});
+  time.appendChild(option);
+ }
+}
+
+document.getElementById("orderForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const status=document.getElementById("status");
+ if(!countItems()){status.textContent="Please add items to your cart first.";return;}
+ const customer=document.getElementById("customer").value.trim();
+ const phone=document.getElementById("phone").value.trim();
+ const pickupDate=date.value;
+ const pickupTime=time.value;
+ if(!customer||!phone||!pickupDate||!pickupTime){status.textContent="Please complete all required details.";return;}
+ const pickup=new Date(pickupDate+"T"+pickupTime+":00");
+ if(pickup<new Date()){status.textContent="Please choose a future pickup time.";return;}
+ const lines=products.filter(p=>cart[p[0]]).map(p=>`- ${p[1]} x${cart[p[0]]} = ${money(p[2]*cart[p[0]])}`);
+ const dateText=new Date(pickupDate+"T12:00:00").toLocaleDateString("en-PH",{year:"numeric",month:"long",day:"numeric"});
+ const message=`Hello, Friedays! I would like to place an advance order request.\n\nName: ${customer}\nContact: ${phone}\nPreferred pickup: ${dateText}, ${pickupTime}\n\nORDER:\n${lines.join("\n")}\n\nEstimated total: ${money(totalPrice())}\nNotes: ${document.getElementById("notes").value}\n\nPlease confirm availability and pickup schedule. Thank you!`;
+ status.textContent="Copying your order details and opening the Friedays Facebook page. Paste the message into Messenger and send it.";
+ try{await navigator.clipboard.writeText(message);}
+ catch(err){status.textContent="Clipboard access unavailable. Please note your cart details and message Friedays.";}
+ window.open(FACEBOOK,"_blank","noopener");
+});
+
+document.getElementById("year").textContent=new Date().getFullYear();
+showMenu();
+showCart();
+showPromos();
+</script>
+</body>
+</html>
